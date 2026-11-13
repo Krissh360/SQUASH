@@ -1,0 +1,245 @@
+{
+  "info": {
+    "name": "SQUASH Bug Tracker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Issue",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Payment gateway timeout\",\n  \"description\": \"Stripe API hangs for 30 seconds on checkout.\",\n  \"severity\": \"CRITICAL\",\n  \"priority\": \"P1\",\n  \"reporter\": \"Alice\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/issues",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Issues",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/issues",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Issue By ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/issues/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Issue",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Payment gateway timeout (Updated)\",\n  \"description\": \"Stripe API hangs for 30 seconds on checkout.\",\n  \"severity\": \"HIGH\",\n  \"priority\": \"P2\",\n  \"assignee\": \"Bob\",\n  \"reporter\": \"Alice\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/issues/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Status (OPEN -> IN_PROGRESS)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"IN_PROGRESS\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/issues/1/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "1",
+            "status"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Assign Issue",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"assignee\": \"Krissh\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/issues/1/assign",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "1",
+            "assign"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Filter by Severity",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/issues/severity/CRITICAL",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "severity",
+            "CRITICAL"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search Issues",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/issues/search?keyword=login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "keyword",
+              "value": "login"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Stats",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/issues/stats",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "stats"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Issue",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:8080/api/issues/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "issues",
+            "5"
+          ]
+        }
+      }
+    }
+  ]
+}
