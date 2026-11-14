@@ -8,6 +8,7 @@ import IssueDetailDrawer from "./components/issues/IssueDetailDrawer";
 
 export default function App() {
   const [createOpen, setCreateOpen] = useState(false);
+  const [editingIssue, setEditingIssue] = useState(null);
   const [selectedIssueId, setSelectedIssueId] = useState(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
@@ -15,9 +16,19 @@ export default function App() {
     setRefreshTrigger((prev) => prev + 1);
   }, []);
 
+  const handleOpenCreate = () => {
+    setEditingIssue(null);
+    setCreateOpen(true);
+  };
+
+  const handleOpenEdit = (issue) => {
+    setEditingIssue(issue);
+    setCreateOpen(true);
+  };
+
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <Navbar onOpenNewIssue={() => setCreateOpen(true)} />
+    <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-accent selection:text-accent-foreground">
+      <Navbar onOpenNewIssue={handleOpenCreate} />
 
       <main className="flex-1 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-8">
         <Routes>
@@ -36,19 +47,25 @@ export default function App() {
               <Issues
                 refreshTrigger={refreshTrigger}
                 onSelectIssue={(id) => setSelectedIssueId(id)}
-                onOpenNewIssue={() => setCreateOpen(true)}
+                onOpenNewIssue={handleOpenCreate}
+                onEditIssue={handleOpenEdit}
               />
             }
           />
         </Routes>
       </main>
 
-      {/* Global Create Issue Dialog */}
+      {/* Global Create / Edit Issue Dialog */}
       <CreateIssueDialog
         open={createOpen}
-        onClose={() => setCreateOpen(false)}
+        initialData={editingIssue}
+        onClose={() => {
+          setCreateOpen(false);
+          setEditingIssue(null);
+        }}
         onSuccess={() => {
           setCreateOpen(false);
+          setEditingIssue(null);
           refreshData();
         }}
       />
@@ -57,6 +74,10 @@ export default function App() {
       <IssueDetailDrawer
         issueId={selectedIssueId}
         onClose={() => setSelectedIssueId(null)}
+        onEdit={(issue) => {
+          setSelectedIssueId(null);
+          handleOpenEdit(issue);
+        }}
         onUpdated={() => {
           refreshData();
         }}
