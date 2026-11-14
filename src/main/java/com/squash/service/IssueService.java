@@ -168,9 +168,9 @@ public class IssueService {
         long total = issues.size();
 
         Map<Status, Long> byStatus = Arrays.stream(Status.values())
-                .collect(Collectors.toMap(s -> s, s => 0L));
+                .collect(Collectors.toMap(s -> s, s -> 0L));
         Map<Severity, Long> bySeverity = Arrays.stream(Severity.values())
-                .collect(Collectors.toMap(sev -> sev, sev => 0L));
+                .collect(Collectors.toMap(sev -> sev, sev -> 0L));
 
         for (Issue i : issues) {
             byStatus.put(i.getStatus(), byStatus.get(i.getStatus()) + 1);
