@@ -38,3 +38,10 @@ Thumbs.db
 
 # Local configuration & credentials
 src/main/resources/application.properties
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
