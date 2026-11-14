@@ -2,17 +2,26 @@
 
 # SQUASH
 
-### A dependable issue-tracking REST API for engineering teams
+### A dependable issue-tracking REST API & modern web client for engineering teams
 
 ![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3.5-6DB33F?logo=springboot&logoColor=white)
 ![Spring Data JPA](https://img.shields.io/badge/Spring_Data-JPA-6DB33F?logo=spring&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?logo=mysql&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.9%2B-C71A36?logo=apachemaven&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?logo=tailwindcss&logoColor=white)
 
-**SQUASH provides a clean HTTP API for reporting, triaging, assigning, searching, and resolving software issues.**
+**SQUASH provides a clean HTTP API and a minimalist web application for reporting, triaging, assigning, searching, and resolving software issues.**
 
-[Features](#features) · [Architecture](#architecture) · [Getting Started](#getting-started) · [API Reference](#api-reference) · [Deployment](#deployment)
+<br />
+
+<img src="screenshots/dashboard-overview.png" alt="SQUASH Dashboard Overview" width="90%" />
+
+<br />
+
+[Features](#features) · [Architecture](#architecture) · [Getting Started](#getting-started) · [Frontend](#frontend) · [API Reference](#api-reference) · [Deployment](#deployment)
 
 </div>
 
@@ -364,6 +373,29 @@ cp frontend/.env.example frontend/.env
 ## Frontend
 
 The SQUASH web UI is built with **React 18**, **Vite**, **Tailwind CSS v4**, and **Recharts**. It provides a minimalist design with a default dark theme and an alternative warm light theme.
+
+### Screenshots
+
+#### 1. Dashboard Overview
+Real-time KPI stat cards with trend sparklines, distribution bar charts for workflow statuses and severity levels:
+
+<p align="center">
+  <img src="screenshots/dashboard-overview.png" alt="SQUASH Dashboard Metrics and Charts" width="95%" />
+</p>
+
+#### 2. Recent Issues & Triage
+Quick-access recent tickets with severity badges, status, and direct drawer access:
+
+<p align="center">
+  <img src="screenshots/dashboard-recent-issues.png" alt="SQUASH Recent Issues View" width="95%" />
+</p>
+
+#### 3. Issues Tracking & Filters
+Filter by combined criteria (status, severity, assignee), instant debounced keyword search, multi-column sorting, and pagination:
+
+<p align="center">
+  <img src="screenshots/issues-table.png" alt="SQUASH Issues Management Table" width="95%" />
+</p>
 
 ### Key capabilities:
 - **Dashboard (`/`)**: Real-time KPI stat cards with trend sparklines (Total, Open, In Progress, Resolved/Closed), distribution bar charts for workflow statuses and severity levels, and quick-access recent tickets.
