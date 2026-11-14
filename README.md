@@ -203,10 +203,43 @@ SQUASH/
 ├── pom.xml
 ├── README.md
 ├── squash.postman_collection.json
+├── frontend/
+│   ├── .env.example
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── index.html
+│   └── src/
+│       ├── api/
+│       │   └── issues.js
+│       ├── components/
+│       │   ├── issues/
+│       │   │   ├── CreateIssueDialog.jsx
+│       │   │   └── IssueDetailDrawer.jsx
+│       │   ├── ui/
+│       │   │   ├── Badge.jsx
+│       │   │   ├── Button.jsx
+│       │   │   ├── Card.jsx
+│       │   │   ├── Dialog.jsx
+│       │   │   ├── Drawer.jsx
+│       │   │   ├── Input.jsx
+│       │   │   ├── Select.jsx
+│       │   │   ├── Skeleton.jsx
+│       │   │   ├── Table.jsx
+│       │   │   ├── Textarea.jsx
+│       │   │   └── Toast.jsx
+│       │   └── Navbar.jsx
+│       ├── pages/
+│       │   ├── Dashboard.jsx
+│       │   └── Issues.jsx
+│       ├── App.jsx
+│       ├── index.css
+│       └── main.jsx
 ├── src/
 │   └── main/
 │       ├── java/com/squash/
 │       │   ├── SquashApplication.java
+│       │   ├── config/
+│       │   │   └── CorsConfig.java
 │       │   ├── controller/
 │       │   │   └── IssueController.java
 │       │   ├── dto/
@@ -307,6 +340,51 @@ The executable JAR is created under `target/`.
 ### 6. Import the API collection
 
 Import `squash.postman_collection.json` into Postman. The collection contains representative requests for creation, retrieval, filtering, searching, assignment, status changes, statistics, and deletion.
+
+### 7. Run the Frontend client
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend web application will start at:
+
+```text
+http://localhost:5173
+```
+
+By default, the client talks to `http://localhost:8080`. To override the backend URL, copy `.env.example` to `.env` and set `VITE_API_URL`:
+
+```bash
+cp frontend/.env.example frontend/.env
+```
+
+## Frontend
+
+The SQUASH web UI is built with **React 18**, **Vite**, **Tailwind CSS v4**, and **Recharts**. It provides a minimalist design with a default dark theme and an alternative warm light theme.
+
+### Key capabilities:
+- **Dashboard (`/`)**: Real-time KPI stat cards with trend sparklines (Total, Open, In Progress, Resolved/Closed), distribution bar charts for workflow statuses and severity levels, and quick-access recent tickets.
+- **Issues (`/issues`)**: Filter by combined criteria (status, severity, assignee), instant debounced keyword search across title and description, multi-column sorting, and 10-per-page pagination.
+- **Create & Edit modal**: Client-side validation mirroring backend constraints (title max 150, required fields) and structured 400 error reporting.
+- **Issue detail drawer**: Slide-out panel inspecting full issue history and timestamps, one-click assignee updating, delete confirmation, and workflow actions enforcing allowed status transitions (`OPEN` → `IN_PROGRESS` → `RESOLVED` → `CLOSED`).
+- **Dark/Light theme toggle**: Persistent theme switch with strict design system token mapping.
+
+### Running both servers together:
+
+1. **Terminal 1 (Backend)**:
+   ```bash
+   mvn spring-boot:run
+   ```
+2. **Terminal 2 (Frontend)**:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+3. Open `http://localhost:5173` in your browser.
+
 
 ## Configuration
 
